@@ -1,10 +1,10 @@
 function myFunction() {
   var sheets = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Respostas"); //Colocar o nome da planilha
-  var emailColumn = 6; // Coluna da cÈlula do email
+  var emailColumn = 6; // Coluna da c√©lula do email
   var checkColumn = 7; // Coluna da Checkbox
   var nomeColumn = 2; // Coluna do nome
-  var numRows = sheets.getLastRow(); // Corresponde ao n˙mero de linhas da planilha
-  var emailssent = []; // … para enviar o email autom·tico do acesso dos usu·rios novos (N√O APAGAR)
+  var numRows = sheets.getLastRow(); // Corresponde ao n√∫mero de linhas da planilha
+  var emailssent = []; // √â para enviar o email autom√°tico do acesso dos usu√°rios novos (N√ÉO APAGAR)
 
   for (var i = 2; i <= numRows; i++) {
     var email = sheets.getRange(i, emailColumn).getDisplayValue();
@@ -13,7 +13,7 @@ function myFunction() {
 
   
     if (isChecked === "ENVIADO") {
-      console.log("E-mail j· enviado para:", email);
+      console.log("E-mail j√° enviado para:", email);
       emailssent.push(email + " - " + nome);
       continue;
     }
@@ -22,7 +22,7 @@ function myFunction() {
       name: "NIIT - FASEPA",
       to: email,
       subject: "Assunto - Acesso ao Sistema",
-      htmlBody: "Ol· " + nome + ", Seja bem vindo ao sistema."
+      htmlBody: "Ol√° " + nome + ", Seja bem vindo ao sistema."
     };
 
     try {
@@ -33,11 +33,11 @@ function myFunction() {
     }
   }
   if (emailssent.length > 0) {
-    var mensagemEmpresa = "E-mails j· enviados:\n\n";
+    var mensagemEmpresa = "E-mails j√° enviados:\n\n";
     mensagemEmpresa += emailssent.join("\n");
     
     var emailEmpresa = "amandremoraes@gmail.com"; 
-    var assuntoEmpresa = "Resumo de E-mails j· enviados";
+    var assuntoEmpresa = "Resumo de E-mails j√° enviados";
     
     try {
       MailApp.sendEmail(emailEmpresa, assuntoEmpresa, mensagemEmpresa);
